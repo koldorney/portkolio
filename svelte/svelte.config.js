@@ -1,13 +1,11 @@
-import adapter from '@sveltejs/adapter-static';
-import preprocess from 'svelte-preprocess';
+import adapter from '@sveltejs/adapter-node';
 
 export default {
-	preprocess: preprocess(),
 	kit: {
-		adapter: adapter(),
-		files: {
-			assets: 'static'
-		}
+		// Ensure adapter-node is being used
+		adapter: adapter({
+			// default options are shown. You can customize these as needed
+			out: 'build', // The directory to build the server to
+		})
 	}
 };
-
