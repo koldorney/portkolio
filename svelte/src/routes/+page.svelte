@@ -1,2 +1,6 @@
+<script>
+	import LinkButton from '$lib/components/LinkButton.svelte';
+</script>
+
 <h1>Welcome!</h1>
-<p>Visit Kol's <a href="/blog">Blog</a></p>
+<LinkButton href="/blog" text="Read My Blog" />
