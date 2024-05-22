@@ -10,9 +10,8 @@ Features
 ### Technologies Used
 
 - Frontend: HTML, CSS, JavaScript (Svelte)
-- Backend: Node.js with Express
-- Database: SQLite for storing blog posts and user interactions
-- Hosting: [Service Name] for website hosting and management
+- Backend: Node.js with express.
+- Database: 
 
 Distributed under the MIT License. See LICENSE for more information.
 Contact
