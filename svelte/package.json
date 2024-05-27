@@ -32,7 +32,10 @@
 		"@sveltejs/adapter-node": "^5.0.1",
 		"@sveltejs/adapter-static": "^3.0.1",
 		"absurd-sql": "^0.0.54",
+		"gsap": "^3.12.5",
 		"marked": "^12.0.2",
-		"svelte-preprocess": "^5.1.4"
+		"scramble-text": "^0.0.9",
+		"svelte-preprocess": "^5.1.4",
+		"typewriter-effect": "^2.21.0"
 	}
 }

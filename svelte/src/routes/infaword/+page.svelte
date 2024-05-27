@@ -3,7 +3,6 @@
 		const response = await fetch('/words.json');
 		const words = await response.json();
 		const randomWord = words[Math.floor(Math.random() * words.length)];
-
 		return { word: randomWord, words: words };
 	}
 </script>
@@ -91,7 +90,7 @@
 </style>
 
 <div>
-	<h1>Wordle Clone</h1>
+	<h1>InfaWord</h1>
 	<input
 		type="text"
 		value={currentGuess}
