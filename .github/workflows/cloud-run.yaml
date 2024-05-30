@@ -24,10 +24,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        working-directory: ./svelte
-        run:
-          docker build -t ghcr.io/koldorney/portkolio:latest .
-          docker push ghcr.io/koldorney/portkolio:latest
+        run: |
+            cd svelte
+            docker build -t ghcr.io/koldorney/portkolio:latest .
+            docker push ghcr.io/koldorney/portkolio:latest
+  
 
   deploy:
     needs: publish
