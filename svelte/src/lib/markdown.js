@@ -18,15 +18,20 @@ export async function getMarkdownContent(fileName) {
 }
 
 /**
- * Get all post filenames without extensions
- * @returns {Promise<string[]>} - An array of post filenames
+ * Get all posts with HTML content
+ * @returns {Promise<{ id: string, content: string }[]>} - An array of objects containing post IDs and HTML content
  */
 export async function getAllPosts() {
 	try {
 		const files = await fs.readdir(contentDir);
-		return files
+		const postPromises = files
 			.filter(file => file.endsWith('.md'))
-			.map(file => file.replace('.md', ''));
+			.map(async file => {
+				const id = file.replace('.md', '');
+				const content = await getMarkdownContent(id);
+				return { id, content };
+			});
+		return Promise.all(postPromises);
 	} catch (error) {
 		console.error('Error reading posts:', error);
 		return [];

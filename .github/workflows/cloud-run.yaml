@@ -49,6 +49,8 @@ jobs:
           project_id: ${{ secrets.GCP_PROJECT_ID }}
           install_components: 'beta'
 
+      - name:
+
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy portkolio \

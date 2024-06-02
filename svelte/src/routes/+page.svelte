@@ -29,9 +29,6 @@
 		<LinkButton href="https://github.com/koldorney" image="ghub.png" text="Github" color="#000000" outlineColor="grey"/>
 		<LinkButton href="/blog" text="Blog" color="#9c2020"/>
 	</div>
-	<div class="container">
-		<LinkButton href="/infaword" text="InfaWords" font="Rubik Broken Fax" color="#8294c2"/>
-	</div>
 </div>
 
 
