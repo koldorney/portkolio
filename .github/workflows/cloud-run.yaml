@@ -51,5 +51,10 @@ jobs:
     - name: Tag for GCR
       run: docker tag ghcr.io/koldorney/portkolio us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
 
+    - name: Auth for Push
+      run: |-
+        gcloud auth login
+        gcloud auth configure-docker us-east1-docker.pkg.dev
+
     - name: Push to GCR
       run: docker push us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
