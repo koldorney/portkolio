@@ -1,5 +1,4 @@
-name: Publish and Deploy to Cloud Run
-
+name: deploy
 on:
   push:
     branches:
@@ -10,52 +9,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout Repo
+      uses: actions/checkout@v3
 
-      # Add your publish steps here
-      # For example, building and pushing a Docker image to a registry
+    - name: Log in to GitHub Container Registry
+      uses: docker/login-action@v2
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GH_PAT }}
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GH_PAT }}
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3
 
-      - name: Build and push Docker image
-        run: |
-            cd svelte
-            docker build -t ghcr.io/koldorney/portkolio:latest .
-            docker push ghcr.io/koldorney/portkolio:latest
-  
-
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GH_PAT}}
-
-      - name: Log in to Google Cloud
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-      - name: Deploy to Cloud Run
-        run: |
-          gcloud run deploy portkolio \
-            --image ghcr.io/your-github-username/portkolio:latest \
-            --region us-central1 \
-            --platform managed \
-            --allow-unauthenticated
+    - name: Build Container
+      run: docker buildx build --platform linux/amd64 -t ghcr.io/koldorney/portkolio:latest --push ./svelte
