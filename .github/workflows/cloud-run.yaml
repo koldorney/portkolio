@@ -39,7 +39,7 @@ jobs:
       uses: google-github-actions/setup-gcloud@v2
 
     - name: Pull from GHCR
-      run: docker pull docker pull ghcr.io/koldorney/portkolio
+      run: docker pull ghcr.io/koldorney/portkolio
 
     - name: Tag for GCR
       run: docker tag ghcr.io/koldorney/portkolio us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
