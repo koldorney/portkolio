@@ -17,11 +17,6 @@ jobs:
           brew update
           brew install --cask docker
 
-      - name: Start Docker
-        run: |
-          open /Applications/Docker.app
-          while ! docker system info > /dev/null 2>&1; do sleep 1; done
-
       - name: Log in to GitHub Container Registry
         uses: docker/login-action@v2
         with:
@@ -44,11 +39,6 @@ jobs:
         run: |
           brew update
           brew install --cask docker
-
-      - name: Start Docker
-        run: |
-          open /Applications/Docker.app
-          while ! docker system info > /dev/null 2>&1; do sleep 1; done
 
       - name: Google Auth
         uses: google-github-actions/auth@v2
