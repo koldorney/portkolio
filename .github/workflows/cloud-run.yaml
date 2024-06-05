@@ -24,6 +24,13 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GH_PAT }}
 
+      - name: Set up Docker Buildx
+        run: |
+            mkdir -p ~/.docker/cli-plugins
+            brew install docker-buildx
+            cp "$(brew --prefix)/opt/docker-buildx/bin/docker-buildx" ~/.docker/cli-plugins/docker-buildx
+            docker buildx create --use
+
       - name: Build Container
         run: docker buildx build --platform linux/amd64 -t ghcr.io/koldorney/portkolio:latest --push ./svelte
 
