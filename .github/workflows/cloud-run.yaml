@@ -6,7 +6,7 @@ on:
 
 jobs:
   publish:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
 
     steps:
     - name: Checkout Repo
@@ -20,7 +20,7 @@ jobs:
         password: ${{ secrets.GH_PAT }}
 
     - name: Build Container
-      run: docker build -t ghcr.io/koldorney/portkolio:latest --push ./svelte
+      run: docker buildx build --platform linux/arm64 -t ghcr.io/koldorney/portkolio:latest --push ./svelte
 
   deploy:
     runs-on: ubuntu-latest
