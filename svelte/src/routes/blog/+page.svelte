@@ -39,7 +39,7 @@
 </style>
 
 <main>
-	<h1>Blog Posts</h1>
+	<h1>KBlog</h1>
 	{#if posts.length > 0}
 		<ul>
 			{#each posts as post}
