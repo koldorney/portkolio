@@ -39,7 +39,7 @@ jobs:
 
       - name: Prep Container for GCP
         run: |
-          docker pull ghcr.io/koldorney/portkolio
+          docker pull --platform linux/arm64 ghcr.io/koldorney/portkolio
           docker tag ghcr.io/koldorney/portkolio:${{github.sha}} us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
 
       - name: Push to GCP
