@@ -38,7 +38,9 @@ jobs:
         run: docker buildx build --platform linux/arm64 -t ghcr.io/koldorney/portkolio:latest --push ./svelte
 
       - name: Prep Container for GCP
-        run: docker tag ghcr.io/koldorney/portkolio:${{github.sha}} us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
+        run: |
+          docker pull ghcr.io/koldorney/portkolio
+          docker tag ghcr.io/koldorney/portkolio:${{github.sha}} us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
 
       - name: Push to GCP
         run: docker push us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
