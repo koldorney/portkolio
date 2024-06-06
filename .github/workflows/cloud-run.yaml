@@ -44,3 +44,12 @@ jobs:
 
       - name: Push to GCP
         run: docker push us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy portkolio \
+            --image us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio:latest \
+            --region us-east1 \
+            --platform managed \
+            --allow-unauthenticated \
+            --project verdant-branch-424915-r9
