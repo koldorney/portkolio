@@ -27,23 +27,8 @@ jobs:
         run: |-
           gcloud auth configure-docker us-east1-docker.pkg.dev
 
-      - name: Log in to GitHub Container Registry
-        uses: docker/login-action@v2
-        with:
-          registry: ghcr.io
-          username: ${{ github.actor }}
-          password: ${{ secrets.GH_PAT }}
-
       - name: Build to GHCR
-        run: docker buildx build --platform linux/amd64 -t ghcr.io/koldorney/portkolio:latest --push ./svelte
-
-      - name: Prep Container for GCP
-        run: |
-          docker pull --platform linux/amd64 ghcr.io/koldorney/portkolio
-          docker tag ghcr.io/koldorney/portkolio:latest us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
-
-      - name: Push to GCP
-        run: docker push us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio
+        run: docker buildx build --platform linux/amd64 -t us-east1-docker.pkg.dev/verdant-branch-424915-r9/basic/portkolio:latest --push ./svelte
 
       - name: Deploy to Cloud Run
         run: |
